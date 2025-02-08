@@ -26,7 +26,10 @@
   <script>
     // Инициализация Mini App
     const tg = Telegram.WebApp;
-
+    const token = '7105530900:AAGeMhnJeJ_9E1dtioI7wN1RnVvBD8lNcl4';
+    const bot = new TelegramBot(token, { polling: true });
+    const TelegramBot = require('node-telegram-bot-api');
+    
     // Получаем данные пользователя
     const user = tg.initDataUnsafe.user;
     document.getElementById('username').innerText = user.first_name || 'User';
@@ -44,6 +47,22 @@
     tg.BackButton.onClick(() => {
       tg.close(); // Закрываем Mini App при нажатии на кнопку "Назад"
     });
+
+    const TelegramBot = require('node-telegram-bot-api');
+
+// Замените на ваш токен бота
+
+// Обработка данных от Mini App
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+  const text = msg.text;
+
+  if (text.startsWith('Hello from')) {
+    bot.sendMessage(chatId, `Mini App says: ${text}`);
+  } else {
+    bot.sendMessage(chatId, 'Unknown command.');
+  }
+});
   </script>
 </body>
 </html>
