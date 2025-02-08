@@ -48,20 +48,20 @@
       tg.close(); // Закрываем Mini App при нажатии на кнопку "Назад"
     });
 
-    const TelegramBot = require('node-telegram-bot-api');
+   
 
-// Замените на ваш токен бота
+    // Замените на ваш токен бота
 
-// Обработка данных от Mini App
-bot.on('message', (msg) => {
-  const chatId = msg.chat.id;
-  const text = msg.text;
+    // Обработка данных от Mini App
+    bot.on('message', (msg) => {
+    const chatId = msg.chat.id;
+    const text = msg.text;
 
-  if (text.startsWith('Hello from')) {
-    bot.sendMessage(chatId, `Mini App says: ${text}`);
-  } else {
-    bot.sendMessage(chatId, 'Unknown command.');
-  }
+    if (text.startsWith('Hello from')) {
+      bot.sendMessage(chatId, `Mini App says: ${text}`);
+    }   else {
+      bot.sendMessage(chatId, 'Unknown command.');
+    }
 });
   </script>
 </body>
