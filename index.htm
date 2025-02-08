@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Mini App</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello, <span id="username"></span>!</h1>
+  <p>Your user ID: <span id="user-id"></span></p>
+  <button onclick="sendData()">Send Message to Bot</button>
+
+  <script>
+    // Инициализация Mini App
+    const tg = Telegram.WebApp;
+
+    // Получаем данные пользователя
+    const user = tg.initDataUnsafe.user;
+    document.getElementById('username').innerText = user.first_name || 'User';
+    document.getElementById('user-id').innerText = user.id || 'Unknown';
+
+    // Функция для отправки данных боту
+    function sendData() {
+      const message = `Hello from ${user.first_name}!`;
+      tg.sendData(message); // Отправляем данные боту
+      tg.close(); // Закрываем Mini App
+    }
+
+    // Показываем кнопку "Назад" в интерфейсе Telegram
+    tg.BackButton.show();
+    tg.BackButton.onClick(() => {
+      tg.close(); // Закрываем Mini App при нажатии на кнопку "Назад"
+    });
+  </script>
+</body>
+</html>
