@@ -6,40 +6,6 @@
   <title>Telegram Mini App</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link rel="stylesheet" href="style.css">
-  <script>
-    const tg = window.Telegram.WebApp;
-
-    // Инициализация
-    tg.ready();
-
-    // Получаем данные пользователя
-    const user = tg.initDataUnsafe.user;
-    document.getElementById('username').innerText = user.first_name || 'User';
-
-    // Отправка данных
-    document.getElementById('send-data').addEventListener('click', () => {
-      tg.sendData(JSON.stringify({ message: "Hello from Mini App!" }));
-      tg.close();
-    });
-
-    // Кнопка "Назад"
-    tg.BackButton.show();
-    tg.BackButton.onClick(() => {
-      tg.close();
-  });
-    // Отключаем масштабирование с помощью жестов на мобильных устройствах
-    document.addEventListener('touchstart', function(event) {
-        if (event.touches.length > 1) {
-            event.preventDefault();
-        }
-    });
-
-    // Отключаем масштабирование с помощью колесика мыши
-    window.addEventListener('wheel', function(event) {
-        event.preventDefault();
-    });
-
-  </script>
 
 </head>
 <body>
@@ -64,5 +30,22 @@
 <button id="send-data">Send Data to Bot</button>
   
   <script src="server.js" defer></script>
+  <script src="connect.js" defer></script>
+  <script>
+    // Кнопка "Назад"
+  
+    // Отключаем масштабирование с помощью жестов на мобильных устройствах
+    //document.addEventListener('touchstart', function(event) {
+        //if (event.touches.length > 1) {
+            //event.preventDefault();
+        //}
+    //});
+
+    // Отключаем масштабирование с помощью колесика мыши
+    //window.addEventListener('wheel', function(event) {
+        //event.preventDefault();
+    //});
+
+  </script>
 </body>
 </html>
