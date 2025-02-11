@@ -17,11 +17,3 @@ bot.on('message', (msg) => {
     });
   }
 });
-
-// Обработка данных из Mini App
-bot.on('web_app_data', (msg) => {
-  const data = JSON.parse(msg.web_app_data.data);
-  const chatId = msg.chat.id;
-
-  bot.sendMessage(chatId, `Mini App отправила: ${JSON.stringify(data)}`);
-});

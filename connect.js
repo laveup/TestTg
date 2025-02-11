@@ -1,24 +1,33 @@
-//const tg = window.Telegram.WebApp;
+$circle.addEventListener('click', (event) => {
+    console.log('Click');
+    const rect = $circle.getBoundingClientRect();
 
-// Инициализация
-//tg.ready();
+    const offsetX = event.clientX - rect.left - rect.width / 2;
+    const offsetY = event.clientY - rect.top - rect.height / 2;
 
-// Получаем данные пользователя
-//const user = tg.initDataUnsafe.user;
-//if (user) {
-  //document.getElementById('username').innerText = user.first_name || 'User';
-//} else {
-  //document.getElementById('username').innerText = 'Guest';
-//}
+    const DEG = 40;
 
-// Отправка данных
-//document.getElementById('send-data').addEventListener('click', () => {
-  //tg.sendData(JSON.stringify({ message: "Hello from Mini App!" }));
-  //tg.close();
-//});
-//
-// Кнопка "Назад"
-//tg.BackButton.show();
-//tg.BackButton.onClick(() => {
-//  tg.close();
-//});
+    const tiltX = (offsetY / rect.height) * DEG;
+    const tiltY = (offsetX / rect.width) * -DEG;
+
+    $circle.style.setProperty('--tiltX', `${tiltX}deg`);
+    $circle.style.setProperty('--tiltY', `${tiltY}deg`);
+
+    setTimeout(() => {
+        $circle.style.setProperty('--tiltX', `0deg`);
+        $circle.style.setProperty('--tiltY', `0deg`);
+    }, 150);
+
+    const plusOne = document.createElement('div');
+    plusOne.classList.add('plus-one');
+    plusOne.textContent = '+1';
+    plusOne.style.left = `${event.clientX - rect.left}px`;
+    plusOne.style.top = `${event.clientY - rect.top}px`;
+    $circle.parentElement.appendChild(plusOne);
+
+    addOne();
+
+    setTimeout(() => {
+        plusOne.remove();
+    }, 2000);
+});
