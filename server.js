@@ -18,12 +18,14 @@ function addOne() {
     const currentScore = getScore();
     let increment = 1; // По умолчанию +1
 
-    if (currentScore >= 200) {
-        increment = 1000; // Если счет >= 1000, добавляем +1000
+    if (currentScore >= 500){
+        increment = 16
+    }else if(currentScore >= 200) {
+        increment = 8;
     } else if (currentScore >= 100) {
-        increment = 4; // Если счет >= 100, добавляем +4
+        increment = 4;
     } else if (currentScore >= 50) {
-        increment = 2; // Если счет >= 50, добавляем +2
+        increment = 2;
     }
 
     setScore(currentScore + increment);
@@ -32,11 +34,28 @@ function addOne() {
 $circle.addEventListener('click', (event) => {
     console.log('Click');
     const rect = $circle.getBoundingClientRect();
+    
+    const offsetX = event.clientX - rect.left - rect.width / 2;
+    const offsetY = event.clientY - rect.top - rect.height / 2;
+
+    const DEG = 40;
+
+    const tiltX = (offsetY / rect.height) * DEG;
+    const tiltY = (offsetX / rect.width) * -DEG;
+
+    $circle.style.setProperty('--tiltX', `${tiltX}deg`);
+    $circle.style.setProperty('--tiltY', `${tiltY}deg`);
+
+    setTimeout(() => {
+        $circle.style.setProperty('--tiltX', `0deg`);
+        $circle.style.setProperty('--tiltY', `0deg`);
+    }, 150);
     const currentScore = getScore();
     let increment = 1;
-
-    if (currentScore >= 200) {
-        increment = 1000;
+    if (currentScore >= 500){
+        increment = 16
+    }else if(currentScore >= 200) {
+        increment = 8;
     } else if (currentScore >= 100) {
         increment = 4;
     } else if (currentScore >= 50) {
