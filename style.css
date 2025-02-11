@@ -1,6 +1,6 @@
 body {
     touch-action: none;  /* отключает возможность масштабирования с помощью жестов */
-    background: linear-gradient(135deg, #072c6d, #76b462)
+    /*background: linear-gradient(135deg, #072c6d, #76b462)*/
 
 }
 
@@ -12,6 +12,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #5050d2;
     
     
 }
