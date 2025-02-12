@@ -103,7 +103,7 @@ html, body {
     box-shadow: 10px -5px 50px rgba(0, 0, 0, 0.5); /* Тень сверху */
 }
 
-.bar button {
+.bar a {
     background: linear-gradient(135deg, #072c6d, #76b462); /* Градиентный фон */
     color: white; /* Белый текст */
     border: none; /* Убираем границу */
